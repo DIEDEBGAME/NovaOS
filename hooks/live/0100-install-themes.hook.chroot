@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+# Descargar e instalar el tema oscuro Orchis
+git clone https://github.com/vinceliuice/Orchis-theme.git /tmp/orchis
+/tmp/orchis/install.sh -d /usr/share/themes
+rm -rf /tmp/orchis
+
+# Descargar e instalar iconos Tela Circle
+git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git /tmp/tela
+/tmp/tela/install.sh -d /usr/share/icons
+rm -rf /tmp/tela
