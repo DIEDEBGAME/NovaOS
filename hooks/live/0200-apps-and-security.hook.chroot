@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+echo "=== 1. INSTALANDO TIENDA A UN CLIC (FLATPAK) ==="
+apt-get update
+apt-get install -y gnome-software gnome-software-plugin-flatpak flatpak ufw apparmor
+
+# Agregar el repositorio Flathub para instalar Minecraft, Steam, Office, etc.
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+echo "=== 2. MÁXIMA CIBERSEGURIDAD ==="
+# Bloquear conexiones entrantes no autorizadas por defecto
+ufw default deny incoming
+ufw default allow outgoing
+systemctl enable ufw
+systemctl enable apparmor
