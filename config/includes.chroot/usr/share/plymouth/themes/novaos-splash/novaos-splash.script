@@ -1,0 +1,15 @@
+# Cargar fondo negro y logo de NovaOS 0.2.0
+Window.SetBackgroundBlack();
+
+logo_image = Image("logo.png");
+logo_sprite = Sprite(logo_image);
+
+# Centrar el logo en la pantalla
+logo_sprite.SetX(Window.GetWidth() / 2 - logo_image.GetWidth() / 2);
+logo_sprite.SetY(Window.GetHeight() / 2 - logo_image.GetHeight() / 2);
+
+# Texto de la versión abajo en pequeño
+version_image = Image.Text("v0.2.0", 0.8, 0.8, 0.8, 1);
+version_sprite = Sprite(version_image);
+version_sprite.SetX(Window.GetWidth() / 2 - version_image.GetWidth() / 2);
+version_sprite.SetY(Window.GetHeight() / 2 + logo_image.GetHeight() / 2 + 15);
