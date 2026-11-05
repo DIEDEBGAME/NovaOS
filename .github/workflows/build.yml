@@ -1,0 +1,18 @@
+name: Compilar NovaOS 0.1.0
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copiar repositorio
+        uses: actions/checkout@v4
+
+      - name: Dar permisos y ejecutar script de NovaOS
+        run: |
+          chmod +x scripts/build.sh
+          cd scripts
+          ./build.sh
