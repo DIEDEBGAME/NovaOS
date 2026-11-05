@@ -9,11 +9,7 @@ echo "=== INICIANDO CONSTRUCCIÓN DEFINITIVA DE NOVAOS 0.1.0 ==="
 mkdir -p build_iso
 cd build_iso
 
-# 2. Instalar herramientas de empaquetado de ISO
-sudo apt-get update
-sudo apt-get install -y live-build debootstrap xorriso squashfs-tools
-
-# 3. Configurar la estructura de la ISO
+# 2. Configurar la estructura de la ISO
 lb config \
     --architectures amd64 \
     --linux-flavours amd64 \
@@ -22,7 +18,8 @@ lb config \
     --binary-images iso-hybrid \
     --bootloader syslinux
 
-# 4. Definir paquetes del sistema operativo final
+# 3. Definir paquetes del sistema operativo final
+mkdir -p config/package-lists
 cat <<EOF > config/package-lists/novaos.list.chroot
 linux-image-amd64
 live-boot
@@ -34,11 +31,10 @@ xfce4-goodies
 lightdm
 firefox-esr
 sudo
-terminal
 EOF
 
-# 5. Compilar la imagen ISO final
+# 4. Compilar la imagen ISO final
 echo "=== COMPILANDO LA ISO FINAL DE NOVAOS ==="
-sudo lb build
+lb build
 
 echo "=== NOVAOS 0.1.0 COMPILADO CON ÉXITO ==="
