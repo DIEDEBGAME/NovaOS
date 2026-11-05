@@ -7,16 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: debian:bookworm
+      options: --privileged
     steps:
       - name: Copiar repositorio
         uses: actions/checkout@v4
 
-      - name: Instalar herramientas de compilación de ISO
+      - name: Instalar dependencias de compilación
         run: |
-          sudo apt-get update
-          sudo apt-get install -y live-build debootstrap xorriso squashfs-tools
+          apt-get update
+          apt-get install -y git live-build debootstrap xorriso squashfs-tools sudo curl
 
-      - name: Dar permisos y ejecutar script de NovaOS
+      - name: Ejecutar script de NovaOS
         run: |
           chmod +x scripts/build.sh
           cd scripts
