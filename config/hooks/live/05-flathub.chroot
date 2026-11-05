@@ -1,17 +1,17 @@
 #!/bin/sh
 set -e
 
-# Instalar dependencias si faltan
+# 1. Actualizar e instalar Tienda + Flatpak + Iconos Papirus
 apt-get update
-apt-get install -y flatpak gnome-software gnome-software-plugin-flatpak appstream appstream-util
+apt-get install -y flatpak gnome-software gnome-software-plugin-flatpak appstream appstream-util papirus-icon-theme git gtk2-engines-murrine gtk2-engines-pixbuf
 
-# Agregar el repositorio de Flathub de fábrica
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-# Actualizar la caché de la tienda para que no cargue en blanco
+# 2. Agregar Flathub y actualizar la caché de la tienda
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
 flatpak update --appstream || true
 appstreamcli refresh-cache --force || true
-# Instalar iconos Papirus desde los repositorios de Debian
-apt-get install -y papirus-icon-theme
-# Instalar temas GTK y herramientas de renderizado
-apt-get install -y gtk2-engines-murrine gtk2-engines-pixbuf orchis-gtk-theme || apt-get install -y materia-gtk-theme
+
+# 3. Clonar e instalar el tema Orchis directo de GitHub
+git clone https://github.com/vinceliuice/Orchis-theme.git /tmp/orchis
+cd /tmp/orchis
+./install.sh -d /usr/share/themes
+rm -rf /tmp/orchis
