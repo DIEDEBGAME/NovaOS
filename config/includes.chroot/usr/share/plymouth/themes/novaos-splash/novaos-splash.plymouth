@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=NovaOS Splash
+Description=Tema de arranque oficial de NovaOS 0.2.0
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/novaos-splash
+ScriptFile=/usr/share/plymouth/themes/novaos-splash/novaos-splash.script
