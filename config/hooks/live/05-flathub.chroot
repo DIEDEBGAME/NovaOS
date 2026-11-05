@@ -11,3 +11,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 # Actualizar la caché de la tienda para que no cargue en blanco
 flatpak update --appstream || true
 appstreamcli refresh-cache --force || true
+# Instalar iconos Papirus desde los repositorios de Debian
+apt-get install -y papirus-icon-theme
+# Instalar temas GTK y herramientas de renderizado
+apt-get install -y gtk2-engines-murrine gtk2-engines-pixbuf orchis-gtk-theme || apt-get install -y materia-gtk-theme
