@@ -24,3 +24,8 @@ jobs:
           chmod +x scripts/build.sh
           cd scripts
           ./build.sh
+- name: Subir ISO como Artifact descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: NovaOS-0.1.0-ISO
+          path: scripts/build_iso/*.iso
