@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+# Instalar dependencias si faltan
+apt-get update
+apt-get install -y flatpak gnome-software gnome-software-plugin-flatpak appstream appstream-util
+
+# Agregar el repositorio de Flathub de fábrica
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Actualizar la caché de la tienda para que no cargue en blanco
+flatpak update --appstream || true
+appstreamcli refresh-cache --force || true
